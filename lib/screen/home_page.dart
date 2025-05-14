@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_aplication_proeyctdm1/screen/likes.dart';
-import 'package:my_aplication_proeyctdm1/screen/profile.dart';
+import 'package:my_aplication_proeyctdm1/screen/likes_page.dart';
+import 'package:my_aplication_proeyctdm1/screen/profile_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
