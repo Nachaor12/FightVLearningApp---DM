@@ -1,6 +1,7 @@
 # my_aplication_proeyctdm1
 
 A new Flutter project.
+FightVLearningApp: Una app para aprender sobre los videojuegos de lucha
 
 ## Getting Started
 
