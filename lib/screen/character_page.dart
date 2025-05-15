@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_aplication_proeyctdm1/entity/character.dart';
+import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
 import 'package:my_aplication_proeyctdm1/screen/infotutorialcharacter_page.dart';
+import 'package:my_aplication_proeyctdm1/screen/characterlist_page.dart';
+import 'package:my_aplication_proeyctdm1/screen/combo_page.dart';
 
 
 Widget textStyleTitle(String textTitle, String textDescription){
@@ -35,9 +38,10 @@ Widget textStyleTitle(String textTitle, String textDescription){
 
 
 class CharacterPage extends StatelessWidget {
+  final Videogame game;
   final Character character;
 
-  const CharacterPage({super.key, required this.character});
+  const CharacterPage({super.key, required this.game, required this.character});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,13 @@ class CharacterPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(character.name),
-        // Este es el botón de retroceso por defecto (no hace falta declararlo si estás usando Navigator.push)
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            // Si quieres volver simplemente:
+            Navigator.pop(context, MaterialPageRoute(builder: (context) => CharacterlistPage(game: game,)));
+          }
+        ),
         actions: [
           Builder(
             builder: (context) {
@@ -91,28 +101,28 @@ class CharacterPage extends StatelessWidget {
             ListTile(
               title: const Text('Tutorial', textScaler: TextScaler.linear(1)),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pop(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Tutorial',)));
               },
             ),
             ListTile(
               title: const Text('Movimientos'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(characater: character, textTitle: character.name,)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Movimientos',)));
               },
             ),
             ListTile(
               title: const Text('Combos'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(characater: character, textTitle: character.name)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ComboPage()));
               },
             ),
             ListTile(
               title: const Text('Especificaciones'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(characater: character, textTitle: character.name)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Especificaciones',)));
               },
             ),
           ],

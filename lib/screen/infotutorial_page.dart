@@ -12,6 +12,7 @@ Widget textStyleTitle(String text){
       Column(
         verticalDirection: VerticalDirection.up,
         children: [
+          SizedBox(width: 20,),
           Stack(
             children: [
               Text(

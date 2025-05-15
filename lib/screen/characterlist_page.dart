@@ -6,8 +6,8 @@ import 'package:my_aplication_proeyctdm1/screen/character_page.dart';
 
 var logger = Logger();
 
-void goToCharacterPage(BuildContext context, Character character){
-  Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterPage(character: character,)));
+void goToCharacterPage(BuildContext context, Videogame game,Character character){
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterPage(game: game, character: character,)));
 }
 
 Widget textTitle(int index){
@@ -108,14 +108,14 @@ List<Character> listCharacters = [
             description: '', listMovements: [], listCombos: []),
 ];
 
-Widget buttonFunction(BuildContext context, Character character, int index){
+Widget buttonFunction(BuildContext context, Videogame game, Character character, int index){
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       backgroundColor: Color.fromARGB(0, 185, 185, 185),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),padding: EdgeInsets.all(16),),
-    onPressed: () => goToCharacterPage(context, character),
+    onPressed: () => goToCharacterPage(context, game, character),
     child: textTitle(index),
   );
 }
@@ -151,19 +151,10 @@ class CharacterlistPage extends StatelessWidget {
                               alignment: Alignment.topRight,
                               fit: BoxFit.fitWidth,
                             ),
-                            /*child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Image(
-                                  image: listCharacters[index].imageMenu,
-                                  alignment: Alignment.topRight,
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ],
-                            ),*/
+                            
                           ),
                           Positioned.fill(
-                            child: buttonFunction(context, listCharacters[index], index),
+                            child: buttonFunction(context, game, listCharacters[index], index),
                           ),
                         ],
                       ),

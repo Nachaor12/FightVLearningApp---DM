@@ -6,12 +6,11 @@ import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
 Widget textTitle(String text){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    mainAxisSize: MainAxisSize.max,
-    spacing: 3,
     children: [
       Column(
         verticalDirection: VerticalDirection.up,
         children: [
+          SizedBox(width: 20),
           Stack(
             children: [
               Text(
