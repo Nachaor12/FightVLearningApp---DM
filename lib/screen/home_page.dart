@@ -12,8 +12,6 @@ class MyApp extends StatelessWidget {
 
   static const appTitle = 'Drawer Demo';
 
-
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -44,6 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
     Videogame(
       name: 'Street Fighter III: third strike', 
       image: AssetImage("assets/icons/sf3-3rd-strike-logo.png"),
+      listButtonsPages: [
+        AssetImage("assets/icons/sf3-3rdstrike-art-by-kinu-unfinished.jpg"),
+        AssetImage("assets/icons/Gamest_Mook_Vol_194.webp"),
+        AssetImage("assets/icons/sf3-3rd-strike-characters-daigo-ikeno.jpg"),
+        AssetImage("assets/icons/SFIII_3S-Ken_Ending-1.webp"),
+      ],
+      //imageInfo: AssetImage("assets/icons/sf3-3rdstrike-art-by-kinu-unfinished.jpg"),
+      //imageTutorial: AssetImage("assets/icons/Gamest_Mook_Vol_194.webp"),
+      //imageCharacters: AssetImage("assets/icons/sf3-3rd-strike-characters-daigo-ikeno.jpg"),
+      //imageMyCombos: AssetImage("assets/icons/SFIII_3S-Ken_Ending-1.webp"),
       released: 1999, 
       developer: 'CAPCOM', 
       favorite: false, 
@@ -59,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       listCharacters: []
     ),
 
-    Videogame(
+    /*Videogame(
       name: 'Street Fighter III: third strike', 
       image: AssetImage("assets/icons/sf3-3rd-strike-logo-2.jpg"),
       released: 1999, 
@@ -75,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'Defensa: ',
         ],
       listCharacters: []
-    ),
+    ),*/
   ];
 
   
@@ -162,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => GamePage(juego: game),
+                                    builder: (context) => GamePage(game: game),
                                   ),
                                 );
                               },
@@ -269,120 +277,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  /*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
-      ),
-      body: Center(
-        child: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            appBar: AppBar(
-              bottom: const TabBar(
-                tabs: [
-                  Tab(icon: Icon(Icons.directions_car)),
-                  Tab(icon: Icon(Icons.directions_transit)),
-                  Tab(icon: Icon(Icons.directions_bike)),
-                ],
-              ),
-              title: const Text('Tabs Demo'),
-            ),
-            body: Center(
-              child: ListView.builder(
-                itemCount: listGamesHome.length,
-                itemBuilder: (context, index){
-                  final game = listGamesHome[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: 120,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          //backgroundColor: const Color.fromARGB(0, 140, 140, 140),
-                          //shadowColor: const Color.fromARGB(0, 190, 190, 190),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.all(16),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => GamePage(juego: game),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              game.name,
-                              style: TextStyle(fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),    
-                            ),
-                            Opacity(
-                              opacity: 0.5,
-                              child: Image(
-                                image: game.image,
-                                width: 250,
-                                height: 250,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Likes'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyLikespage()));
-              },
-            ),
-          ],
-        ),
-      ),
-      
-    );
-  }*/
+  
 }

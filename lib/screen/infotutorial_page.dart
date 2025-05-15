@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
-//import 'package:my_aplication_proeyctdm1/screen/home.dart';
+import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
 
 int _counter = 0;
 
 
-class MyProfilePage extends StatefulWidget{
-  const MyProfilePage({super.key});
+class InfoTutorialPage extends StatelessWidget {
+  final Videogame game;
 
-  @override
-  MyProfilePageState createState() => MyProfilePageState();
-}
-
-
-
-class MyProfilePageState extends State<MyProfilePage> {
-  
+  const InfoTutorialPage({super.key, required this.game});
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    _counter++;
   }
 
   @override
