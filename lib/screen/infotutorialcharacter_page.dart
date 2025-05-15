@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
+import 'package:my_aplication_proeyctdm1/entity/character.dart';
 
 
 
 Widget textStyleTitle(String text){
   return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    mainAxisSize: MainAxisSize.max,
-    spacing: 3,
     children: [
+      SizedBox(width: 20),
       Column(
         verticalDirection: VerticalDirection.up,
         children: [
@@ -39,11 +37,11 @@ Widget textStyleTitle(String text){
   );
 }
 
-class InfoTutorialPage extends StatelessWidget {
-  final Videogame game;
+class InfoTutorialCharacterPage extends StatelessWidget {
+  final Character characater;
   final String textTitle;
 
-  const InfoTutorialPage({super.key, required this.game, required this.textTitle});
+  const InfoTutorialCharacterPage({super.key, required this.characater, required this.textTitle});
 
 
   @override
@@ -58,13 +56,14 @@ class InfoTutorialPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Image(image: game.image, width: 200, height: 200,),
+            SizedBox(height: 20),
+            Image(image: characater.imageMenu, width: 200, height: 200,),
             SizedBox(
               height: 120,
               child: ListView.builder(
                 itemCount: 1,
                 itemBuilder: (context, index) {
-                  return textStyleTitle(game.name);
+                  return textStyleTitle(characater.name);
                 },
               ),
             ),

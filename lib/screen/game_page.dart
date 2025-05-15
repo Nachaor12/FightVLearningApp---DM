@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
 import 'package:my_aplication_proeyctdm1/screen/characterlist_page.dart';
 import 'package:my_aplication_proeyctdm1/screen/infogame_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/infotutorial_page.dart';
+import 'package:my_aplication_proeyctdm1/screen/tutorial_page.dart';
 import 'package:my_aplication_proeyctdm1/screen/mycombos_page.dart';
 
+var logger = Logger();
 
 void goToInfoPage(BuildContext context, Videogame game){
   Navigator.push(context, MaterialPageRoute(builder: (context) => InfoGamePage(game: game,)));
 }
 void goToTutorialPage(BuildContext context, Videogame game){
-  Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialPage(game: game,)));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => TutorialPage(game: game,)));
 }
 void goToCharacterPage(BuildContext context, Videogame game){
   Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterlistPage(game: game,)));
@@ -62,14 +64,32 @@ List<String> listTextPage = [
 
 List<Widget> listButtonsFunction(BuildContext context, Videogame game, int index){
   final List<Widget> listButtons = <Widget>[
-    ElevatedButton(
-      style: ElevatedButton.styleFrom(
+    ElevatedButton( style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(0, 185, 185, 185),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-        ),
-        padding: EdgeInsets.all(16),
-      ),
+        ),padding: EdgeInsets.all(16),),
       onPressed: () => goToInfoPage(context, game),
+      child: textTitle(index),
+    ),
+    ElevatedButton( style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(0, 185, 185, 185),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),padding: EdgeInsets.all(16),),
+      onPressed: () => goToTutorialPage(context, game),
+      child: textTitle(index),
+    ),
+    ElevatedButton( style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(0, 185, 185, 185),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),padding: EdgeInsets.all(16),),
+      onPressed: () => goToCharacterPage(context, game),
+      child: textTitle(index),
+    ),
+    ElevatedButton( style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(0, 185, 185, 185),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),padding: EdgeInsets.all(16),),
+      onPressed: () => goToMyCombosPage(context, game),
       child: textTitle(index),
     ),
   ];
@@ -93,7 +113,7 @@ class GamePage extends StatelessWidget {
           child: Scaffold(
             body: Center(
               child: ListView.builder(
-                itemCount: 1,
+                itemCount: 4,
                 itemBuilder: (context, index){
                   final listOfContent = listButtonsFunction(context, game, index);
                   return Padding(
@@ -104,9 +124,10 @@ class GamePage extends StatelessWidget {
                         children: [
                           Positioned.fill(
                             child: Image(
-                                  image: game.listButtonsPages[index],
-                                  fit: BoxFit.cover
-                                ),
+                              image: game.listButtonsPages[index],
+                              alignment: Alignment.center,
+                              fit: BoxFit.cover
+                            ),
                             /*child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Opacity(
@@ -130,69 +151,4 @@ class GamePage extends StatelessWidget {
       ),
     );
   }
-
-
-  /*@override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(game.name),
-      ),
-      body: Center(
-        child: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            body: Center(
-              child: ListView.builder(
-                itemCount: listGameInfo.length,
-                itemBuilder: (context, index){
-                  final game = listGameInfo[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: 120,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          //backgroundColor: const Color.fromARGB(0, 140, 140, 140),
-                          //shadowColor: const Color.fromARGB(0, 190, 190, 190),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.all(16),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => game_page(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              game.name,
-                              style: TextStyle(fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),    
-                            ),
-                            Opacity(
-                              opacity: 0.5,
-                              child: Image(
-                                image: game.image,
-                                width: 250,
-                                height: 250,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  } */
 }

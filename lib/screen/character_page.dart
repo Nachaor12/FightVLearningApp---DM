@@ -1,26 +1,43 @@
 import 'package:flutter/material.dart';
-//import 'package:my_aplication_proeyctdm1/screen/home.dart';
+import 'package:my_aplication_proeyctdm1/entity/character.dart';
+import 'package:my_aplication_proeyctdm1/screen/infotutorialcharacter_page.dart';
 
-int _counter = 0;
 
-
-class MyProfilePage extends StatefulWidget{
-  const MyProfilePage({super.key});
-
-  @override
-  MyProfilePageState createState() => MyProfilePageState();
+Widget textStyleTitle(String textTitle, String textDescription){
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Stack(
+        children: [
+          Text(
+            textTitle,
+            style: TextStyle(
+              fontSize: 22,
+              foreground: Paint()
+                ..style = PaintingStyle.stroke
+                ..strokeWidth = 3.5
+                ..color = Colors.black,
+            ),
+          ),
+          Text(
+            textTitle,
+            style: TextStyle(
+              fontSize: 22,
+              color: Colors.white
+            ),
+          ),
+        ],
+      ),
+      Text(textDescription),
+    ],
+  );
 }
 
 
+class CharacterPage extends StatelessWidget {
+  final Character character;
 
-class MyProfilePageState extends State<MyProfilePage> {
-  
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  const CharacterPage({super.key, required this.character});
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +45,79 @@ class MyProfilePageState extends State<MyProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('ProfilePage'),
+        title: Text(character.name),
+        // Este es el botón de retroceso por defecto (no hace falta declararlo si estás usando Navigator.push)
+        actions: [
+          Builder(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(Icons.more_vert),
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            SizedBox(height: 20),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 5,
+              children: [
+                Image(image: character.image, width: 200, height: 200,),
+                //SizedBox(width: 10),
+                textStyleTitle(character.name, character.description),
+                //SizedBox(width: 10,)
+              ],
+            ),
+            SizedBox(height: 40),
+            const Text('Page in process of content'),
+          ],
+        ),
+      ),
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.orangeAccent),
+              child: Text(''),
+            ),
+            ListTile(
+              title: const Text('Tutorial', textScaler: TextScaler.linear(1)),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Movimientos'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(characater: character, textTitle: character.name,)));
+              },
+            ),
+            ListTile(
+              title: const Text('Combos'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(characater: character, textTitle: character.name)));
+              },
+            ),
+            ListTile(
+              title: const Text('Especificaciones'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(characater: character, textTitle: character.name)));
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }

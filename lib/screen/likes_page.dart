@@ -28,7 +28,7 @@ class MyLikespageState extends State<MyLikespage>{
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         
-        title: Text('LikesPage'),
+        title: Text('Mis juegos'),
       ),
       body: Center(
         

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-//import 'package:my_aplication_proeyctdm1/screen/home.dart';
 
 int _counter = 0;
 
 
-class MyProfilePage extends StatefulWidget{
-  const MyProfilePage({super.key});
+class ComboPage extends StatefulWidget{
+  const ComboPage({super.key});
 
   @override
-  MyProfilePageState createState() => MyProfilePageState();
+  ComboPageState createState() => ComboPageState();
 }
 
 
 
-class MyProfilePageState extends State<MyProfilePage> {
+class ComboPageState extends State<ComboPage> {
   
 
   void _incrementCounter() {

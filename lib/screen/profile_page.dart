@@ -28,7 +28,7 @@ class MyProfilePageState extends State<MyProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('ProfilePage'),
+        title: Text('Perfil'),
       ),
       body: Center(
         child: Column(

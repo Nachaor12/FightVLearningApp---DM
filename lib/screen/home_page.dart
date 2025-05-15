@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FightVlearning',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 32, 135, 173)),
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 16, 117, 154)),
       ),
-      home: const MyHomePage(title: 'Home'),
-
+      home: const MyHomePage(title: 'Inicio'),
     );
   }
 }
@@ -43,15 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
       name: 'Street Fighter III: third strike', 
       image: AssetImage("assets/icons/sf3-3rd-strike-logo.png"),
       listButtonsPages: [
-        AssetImage("assets/icons/sf3-3rdstrike-art-by-kinu-unfinished.jpg"),
-        AssetImage("assets/icons/Gamest_Mook_Vol_194.webp"),
-        AssetImage("assets/icons/sf3-3rd-strike-characters-daigo-ikeno.jpg"),
-        AssetImage("assets/icons/SFIII_3S-Ken_Ending-1.webp"),
+        AssetImage("assets/icons/sf3-3rdstrike-art-by-kinu-unfinished.jpg"),  //Informacion general
+        AssetImage("assets/icons/Parry_the_ball_bonus_game_sf3.png"),         //Tutorial general
+        AssetImage("assets/icons/sf3-3rd-strike-characters-daigo-ikeno.jpg"), //Personajes
+        AssetImage("assets/icons/SFIII_3S-Ken_Ending-1.webp"),                //Mis combos
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        AssetImage("assets/icons/yang-3s-up.jpg"),                            //Movimiento
+        AssetImage("assets/icons/Gamest_Mook_Vol_194.webp"),                  //Ataque
+        AssetImage("assets/icons/SFIII_3S-Oro_Ending-3.webp"),                //Defensa
+        AssetImage("assets/icons/HUD_image_round.png"),                      //Hud/Interfaz
+        AssetImage("assets/icons/SFIII-Chun-Li-1.webp"),                      //Mecanicas
       ],
-      //imageInfo: AssetImage("assets/icons/sf3-3rdstrike-art-by-kinu-unfinished.jpg"),
-      //imageTutorial: AssetImage("assets/icons/Gamest_Mook_Vol_194.webp"),
-      //imageCharacters: AssetImage("assets/icons/sf3-3rd-strike-characters-daigo-ikeno.jpg"),
-      //imageMyCombos: AssetImage("assets/icons/SFIII_3S-Ken_Ending-1.webp"),
       released: 1999, 
       developer: 'CAPCOM', 
       favorite: false, 
@@ -66,24 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       listCharacters: []
     ),
-
-    /*Videogame(
-      name: 'Street Fighter III: third strike', 
-      image: AssetImage("assets/icons/sf3-3rd-strike-logo-2.jpg"),
-      released: 1999, 
-      developer: 'CAPCOM', 
-      favorite: false, 
-      icon: Icon(Icons.favorite_border, size: 30, color: Colors.redAccent),
-      description: 'El tercer videojuego enumerado de la saga original "Street Fighter"',
-      listTutorial: [
-        'Movimiento: ',
-        'Mecanicas: ',
-        'HUD/Interfaz: ',
-        'Ataque: ',
-        'Defensa: ',
-        ],
-      listCharacters: []
-    ),*/
   ];
 
   
@@ -209,27 +193,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ],
                               ),
-                              /*child: Stack(
-                                children: [
-                                  Text(
-                                    game.name,
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      foreground: Paint()
-                                        ..style = PaintingStyle.stroke
-                                        ..strokeWidth = 3.5
-                                        ..color = Colors.black,
-                                      ),
-                                  ),
-                                  Text(
-                                    game.name,
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      color: Colors.white
-                                    ),
-                                  ),
-                                ],
-                              ),*/
                             ),
                           ),
                         ],
@@ -251,31 +214,28 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Drawer Header'),
             ),
             ListTile(
-              title: const Text('Home'),
+              title: const Text('Inicio'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Likes'),
+              title: const Text('Mis juegos'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyLikespage()));
               },
             ),
+            ListTile(
+              title: const Text('Perfil'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
+              },
+            ),
           ],
         ),
       ),
-      
     );
   }
-
-  
 }
