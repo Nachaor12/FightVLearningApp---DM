@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_aplication_proeyctdm1/entity/combo.dart';
-import 'package:my_aplication_proeyctdm1/entity/movement.dart';
+//import 'package:my_aplication_proeyctdm1/entity/movement.dart';
 
 int counter = 1;
 

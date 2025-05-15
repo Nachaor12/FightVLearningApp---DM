@@ -110,9 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
               bottom: const TabBar(
                 tabs: [
-                  Tab(icon: Icon(Icons.favorite_border)),
-                  Tab(icon: Icon(Icons.directions_transit)),
-                  Tab(icon: Icon(Icons.directions_bike)),
+                  Tab(icon: Icon(Icons.sports_esports)),
+                  Tab(icon: Icon(Icons.favorite_sharp)),
+                  Tab(icon: Icon(Icons.person)),
                 ],
               ),
               title: const Text('Opciones', textScaler: TextScaler.linear(1),),
