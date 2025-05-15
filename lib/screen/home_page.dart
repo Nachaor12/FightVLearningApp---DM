@@ -10,7 +10,7 @@ var logger = Logger();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const appTitle = 'Drawer Demo';
+  static const appTitle = 'Acceso';
 
   // This widget is the root of your application.
   @override
