@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
-import 'package:my_aplication_proeyctdm1/screen/infotutorial_page.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
+import 'package:fightvlearning_app/screen/infotutorial_page.dart';
 
 var logger = Logger();
 

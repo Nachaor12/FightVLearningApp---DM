@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:my_aplication_proeyctdm1/entity/combo.dart';
-import 'package:my_aplication_proeyctdm1/entity/movement.dart';
+import 'package:fightvlearning_app/entity/combo.dart';
+import 'package:fightvlearning_app/entity/movement.dart';
 
 
 class Character{

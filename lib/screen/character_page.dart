@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_aplication_proeyctdm1/entity/character.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
-import 'package:my_aplication_proeyctdm1/screen/infotutorialcharacter_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/characterlist_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/combo_page.dart';
+import 'package:fightvlearning_app/entity/character.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
+import 'package:fightvlearning_app/screen/infotutorialcharacter_page.dart';
+import 'package:fightvlearning_app/screen/characterlist_page.dart';
+import 'package:fightvlearning_app/screen/combo_page.dart';
 
 
 Widget textStyleTitle(String textTitle, String textDescription){

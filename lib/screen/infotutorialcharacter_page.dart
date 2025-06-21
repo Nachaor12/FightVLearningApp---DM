@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_aplication_proeyctdm1/entity/character.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
-import 'package:my_aplication_proeyctdm1/screen/character_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/combo_page.dart';
+import 'package:fightvlearning_app/entity/character.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
+import 'package:fightvlearning_app/screen/character_page.dart';
+import 'package:fightvlearning_app/screen/combo_page.dart';
 
 
 

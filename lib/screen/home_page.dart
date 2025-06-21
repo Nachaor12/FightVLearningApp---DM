@@ -3,12 +3,12 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
-import 'package:my_aplication_proeyctdm1/screen/likes_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/profile_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/game_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/preferences.dart';
-import 'package:my_aplication_proeyctdm1/entity/user.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
+import 'package:fightvlearning_app/screen/likes_page.dart';
+import 'package:fightvlearning_app/screen/profile_page.dart';
+import 'package:fightvlearning_app/screen/game_page.dart';
+import 'package:fightvlearning_app/screen/preferences.dart';
+import 'package:fightvlearning_app/entity/user.dart';
 
 var logger = Logger();
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:my_aplication_proeyctdm1/entity/user.dart';
-import 'package:my_aplication_proeyctdm1/entity/Combo.dart';
+import 'package:fightvlearning_app/entity/user.dart';
+import 'package:fightvlearning_app/entity/Combo.dart';
 
 
 

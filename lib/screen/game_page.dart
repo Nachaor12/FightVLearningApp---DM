@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
-import 'package:my_aplication_proeyctdm1/screen/characterlist_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/infogame_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/tutorial_page.dart';
-import 'package:my_aplication_proeyctdm1/screen/mycombos_page.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
+import 'package:fightvlearning_app/screen/characterlist_page.dart';
+import 'package:fightvlearning_app/screen/infogame_page.dart';
+import 'package:fightvlearning_app/screen/tutorial_page.dart';
+import 'package:fightvlearning_app/screen/mycombos_page.dart';
 
 var logger = Logger();
 

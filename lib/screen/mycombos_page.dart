@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:my_aplication_proeyctdm1/screen/characterlist_page.dart';
-import 'package:my_aplication_proeyctdm1/entity/combo.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
+import 'package:fightvlearning_app/entity/combo.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
 
 int counter = 0;
 

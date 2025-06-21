@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:my_aplication_proeyctdm1/entity/character.dart';
+import 'package:fightvlearning_app/entity/character.dart';
 
 class Videogame {
   String name; //Nombre del juego/identificador

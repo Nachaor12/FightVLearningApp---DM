@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
+import 'package:fightvlearning_app/entity/videogame.dart';
 
 
 

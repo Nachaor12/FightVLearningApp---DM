@@ -1,4 +1,4 @@
-import 'package:my_aplication_proeyctdm1/entity/movement.dart';
+import 'package:fightvlearning_app/entity/movement.dart';
 
 
 class Combo {

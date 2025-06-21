@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:my_aplication_proeyctdm1/screen/home_page.dart';
+import 'package:fightvlearning_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
 
 //https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png

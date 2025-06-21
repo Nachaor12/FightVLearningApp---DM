@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_aplication_proeyctdm1/services/notifications.dart';
+import 'package:fightvlearning_app/services/notifications.dart';
 import 'package:provider/provider.dart';
-import 'package:my_aplication_proeyctdm1/screen/home_page.dart';
+import 'package:fightvlearning_app/screen/home_page.dart';
 
 
 void main() async{
