@@ -53,7 +53,6 @@ class CharacterPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            // Si quieres volver simplemente:
             Navigator.pop(context, MaterialPageRoute(builder: (context) => CharacterlistPage(game: game,)));
           }
         ),
@@ -77,7 +76,7 @@ class CharacterPage extends StatelessWidget {
             SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 5,
+              spacing: 2,
               children: [
                 Image(image: character.image, width: 200, height: 200,),
                 //SizedBox(width: 10),

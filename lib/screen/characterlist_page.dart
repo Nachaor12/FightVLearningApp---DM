@@ -48,7 +48,7 @@ Widget textTitle(int index){
 List<Character> listCharacters = [
   Character(name: 'Akuma', image: AssetImage("assets/characters/complete/akuma-3s.jpg"), 
             imageMenu: AssetImage("assets/characters/face/akuma-3rd.jpg"),
-            description: 'Estilo de lucha: Satsui no Hado/Ansatsuken\n\n\n\n\n\n', listMovements: [], listCombos: []),
+            description: 'Satsui no Hado/Ansatsuken', listMovements: [], listCombos: []),
   Character(name: 'Alex', image: AssetImage("assets/characters/complete/alex-3s.jpg"), 
             imageMenu: AssetImage("assets/characters/face/alex-3rd.jpg"),
             description: '', listMovements: [], listCombos: []),

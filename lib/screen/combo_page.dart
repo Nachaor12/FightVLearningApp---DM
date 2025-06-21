@@ -13,7 +13,7 @@ class ComboPage extends StatefulWidget{
 }
 
 List<Combo> listCombos = [
-  Combo(name: 'combo 1', safe: false, listMovements: [])
+  Combo(id: 1, name: 'combo 1', safe: false, listMovements: [])
 
 ];
 

@@ -1,27 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
+//import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
 import 'package:my_aplication_proeyctdm1/screen/likes_page.dart';
 import 'package:my_aplication_proeyctdm1/screen/profile_page.dart';
 import 'package:my_aplication_proeyctdm1/screen/game_page.dart';
+import 'package:my_aplication_proeyctdm1/screen/preferences.dart';
+import 'package:my_aplication_proeyctdm1/entity/user.dart';
 
 var logger = Logger();
+
+//Variables para preferencias y otras más de uso común entre pantallas
+class AppData extends ChangeNotifier {
+  //Indice con el cual cambiar el tabBar desde otras pantallas
+  int tabIndex = 0;
+  //Datos del usuario
+  ImageProvider userEmptyImage = AssetImage("assets/icons/icon_userempty.png");
+  List<User> users = [];
+
+  ImageProvider changeImageUser(ImageProvider imageUser) {
+    if(users.isEmpty){
+      return userEmptyImage;
+    }
+    return imageUser;
+  }
+  //Preferencias
+  bool activeNotifer = false;
+  bool shareCombos = false;
+  bool recomendCombos= false;
+
+  //Cargar preferencias
+  Future<void> loadPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    activeNotifer = prefs.getBool('isActiveNotiferEnabled') ?? false;
+    shareCombos = prefs.getBool('isShareCombosEnabled') ?? false;
+    recomendCombos = prefs.getBool('isRecomendCombosEnabled') ?? false;
+    notifyListeners();
+  }
+
+  //Guardar preferencias
+  Future<void> savedPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isActiveNotiferEnabled', activeNotifer);
+    await prefs.setBool('isShareCombosEnabled', shareCombos);
+    await prefs.setBool('isRecomendCombosEnabled', recomendCombos);
+  }
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const appTitle = 'Acceso';
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FightVlearning',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 16, 117, 154)),
-      ),
-      home: const MyHomePage(title: 'Inicio'),
+    return ChangeNotifierProvider(
+      create: (context) => AppData(),
+      child: MaterialApp(
+        title: 'FightV-learning',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 183, 58, 100)),
+          //textTheme: GoogleFonts.bebasNeueTextTheme(),
+          //textTheme: GoogleFonts.permanentMarkerTextTheme(),
+          //textTheme: GoogleFonts.bangersTextTheme(),
+          //textTheme: GoogleFonts.francoisOneTextTheme(),
+          //textTheme: GoogleFonts.vinaSansTextTheme(),
+        ),
+        home: MyHomePage(title: "Inicio")
+      )
     );
   }
 }
@@ -30,13 +78,15 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
 
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  bool isActiveNotiferEnabled = false;
+  bool isShareCombosEnabled = false;
+  bool isRecomendCombosEnabled = false;
 
   final List<Videogame> listGamesHome = <Videogame>[
     Videogame(
@@ -69,7 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
       listCharacters: []
     ),
   ];
-
   
   Icon favoriteIcon = Icon(Icons.favorite_border);
 
@@ -86,155 +135,183 @@ class _MyHomePageState extends State<MyHomePage> {
     }); 
   }
 
+  
+  ImageProvider userEmptyImage = AssetImage("assets/icons/icon_userempty.png");
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Colors.orangeAccent,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
+    return DefaultTabController(
+      initialIndex: context.watch<AppData>().tabIndex,
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+          backgroundColor: Colors.orangeAccent,
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () { Scaffold.of(context).openDrawer(); },
+              );
+            },
+          ),
         ),
-      ),
-      body: Center(
-        child: DefaultTabController(
-          length: 3,
+        body: Center(
           child: Scaffold(
-            appBar: AppBar(
-              bottom: const TabBar(
-                tabs: [
-                  Tab(icon: Icon(Icons.sports_esports)),
-                  Tab(icon: Icon(Icons.favorite_sharp)),
-                  Tab(icon: Icon(Icons.person)),
-                ],
+            appBar: PreferredSize(preferredSize:Size.fromHeight(80), 
+              child: AppBar(
+                bottom: const TabBar(
+                  tabs: [
+                    Tab(text: "Videojuegos", icon: Icon(Icons.sports_esports)),
+                    Tab(text: "Favoritos",icon: Icon(Icons.favorite_sharp)),
+                    Tab(text: "Perfil",icon: Icon(Icons.person)),
+                  ],
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorColor: Color.fromARGB(255, 25, 107, 175),
+                  labelColor: Color.fromARGB(255, 25, 107, 175),
+                ),
+                //title: const Text('Videojuegos', textScaler: TextScaler.linear(1),),
+                backgroundColor:  const Color.fromARGB(255, 255, 151, 41),
               ),
-              title: const Text('Opciones', textScaler: TextScaler.linear(1),),
-              backgroundColor:  const Color.fromARGB(255, 255, 151, 41),
             ),
-            body: Center(
-              child: ListView.builder(
-                itemCount: listGamesHome.length,
-                itemBuilder: (context, index){
-                  final game = listGamesHome[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: 120,
-                      child: Stack(
-                        children: [
-                          Positioned.fill(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Opacity(
-                                opacity: 0.7,
-                                child: Image(
-                                  image: game.image,
-                                  fit: BoxFit.contain
-                                ),
-                              )
-                            ),
+            body: TabBarView(children: [
+              gameListPage(),
+              MyLikespage(),
+              MyProfilePage(),
+            ]),//gameListPage(),
+          ),
+        ),
+        drawer: Drawer(
+          child: Builder(
+            builder: (context) => ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                UserAccountsDrawerHeader(
+                  accountName: Text("Ignacio Alfaro"), 
+                  accountEmail: Text("nachoar.12.73.19@gmail.com"),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: context.read<AppData>().changeImageUser(userEmptyImage)
+                  ),
+                  
+                ),
+                const Divider(height: 0.1,),
+                ListTile(title: const Text('Inicio'), leading: Icon(Icons.home), onTap: () { Navigator.pop(context); 
+                    DefaultTabController.of(context).animateTo(0);
+                  },
+                ),
+                const Divider(height: 0.1,),
+                ListTile(title: const Text('Mis juegos'), leading: Icon(Icons.sports_esports), onTap: () { Navigator.pop(context); 
+                    DefaultTabController.of(context).animateTo(1);
+                  },
+                ),
+                const Divider(height: 0.1,),
+                ListTile(title: const Text('Perfil'), leading: Icon(Icons.person), onTap: () { Navigator.pop(context);
+                    DefaultTabController.of(context).animateTo(2);
+                  },
+                ),
+                const Divider(height: 0.1,),
+                ListTile(title: const Text('Preferencias'), leading: Icon(Icons.settings), onTap: () { Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesPage()));//.then((_){context.watch()<AppData>().loadPreferences();});
+                  },
+                ),
+                const Divider(height: 0.1,),
+                ListTile(title: const Text('Acerca de'), leading: Icon(Icons.info), onTap: () { Navigator.pop(context);
+                    //Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
+                  },
+                ),
+                const Divider(height: 0.1,),
+              ],
+            ),
+          ),
+        ),
+
+      ),
+    );
+  }
+
+  Center gameListPage() {
+    return Center(
+      child: ListView.builder(
+        itemCount: listGamesHome.length,
+        itemBuilder: (context, index){
+          final game = listGamesHome[index];
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: 120,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Opacity(
+                        opacity: 0.7,
+                        child: Image(
+                          image: game.image,
+                          fit: BoxFit.contain
+                        ),
+                      )
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(0, 185, 185, 185),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GamePage(game: game),
                           ),
-                          Positioned.fill(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromARGB(0, 185, 185, 185),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                padding: const EdgeInsets.all(16),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => GamePage(game: game),
-                                  ),
-                                );
-                              },
-                              child:Column(
-                                verticalDirection: VerticalDirection.up,
+                        );
+                      },
+                      child:Column(
+                        verticalDirection: VerticalDirection.up,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Stack(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          Text(
-                                            game.name,
-                                            style: TextStyle(
-                                              fontSize: 22,
-                                              foreground: Paint()
-                                                ..style = PaintingStyle.stroke
-                                                ..strokeWidth = 3.5
-                                                ..color = Colors.black,
-                                            ),
-                                          ),
-                                          Text(
-                                            game.name,
-                                            style: TextStyle(
-                                              fontSize: 22,
-                                              color: Colors.white
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      TextButton(
-                                        onPressed: () => changeFavorite(game), 
-                                        child: game.icon
-                                      )
-                                    ],
+                                  Text(
+                                    game.name,
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      foreground: Paint()
+                                        ..style = PaintingStyle.stroke
+                                        ..strokeWidth = 3.5
+                                        ..color = Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    game.name,
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      color: Colors.white
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
+                              TextButton(
+                                onPressed: () => changeFavorite(game), 
+                                child: game.icon
+                              )
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
             ),
-          ),
-        ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.orangeAccent),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Inicio'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Mis juegos'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyLikespage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Perfil'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

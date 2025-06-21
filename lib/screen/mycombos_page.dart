@@ -6,7 +6,7 @@ import 'package:my_aplication_proeyctdm1/entity/videogame.dart';
 int counter = 0;
 
 List<Combo> listCombos = [
-  Combo(name: 'combo 1', safe: false, listMovements: [])
+  Combo(id: 1 , name: 'combo 1', safe: false, listMovements: [])
 
 ];
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_aplication_proeyctdm1/services/notifications.dart';
 //import 'package:my_aplication_proeyctdm1/screen/home.dart';
 
 
@@ -13,23 +14,11 @@ class MyLikespage extends StatefulWidget{
 
 
 class MyLikespageState extends State<MyLikespage>{
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        
-        title: Text('Mis juegos'),
-      ),
       body: Center(
         
         child: Column(
@@ -37,15 +26,13 @@ class MyLikespageState extends State<MyLikespage>{
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){
+          showNotification(id: 2, title: 'Nueva notificacion', body: 'Recibiste una nueva notificacion');
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), 
