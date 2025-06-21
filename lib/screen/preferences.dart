@@ -93,7 +93,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                     },
                   ),
                   SwitchListTile(
-                    title: Text('Compartir combos por BlueTooth'),
+                    title: Text('Compartir combos por Wifi'),
                     value: _isShareCombosEnabled, 
                     onChanged: (bool value) async{ 
                       setState(() {

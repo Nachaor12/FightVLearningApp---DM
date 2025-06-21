@@ -45,6 +45,7 @@ dependencies:
   timezone: ^0.10.0
   android_intent_plus: ^5.3.0
   flutter_timezone: ^4.1.1
+  flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   flutter_test:
@@ -102,3 +103,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  color: "#ffffff"
+  image: "assets/icon_app/Icon-FightVLearning2.png"
+  android_12:
+    color: "#ffffff"
+    image: "assets/icon_app/Icon-FightVLearning2.png"
