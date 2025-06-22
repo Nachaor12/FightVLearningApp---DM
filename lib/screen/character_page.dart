@@ -97,30 +97,23 @@ class CharacterPage extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.orangeAccent),
               child: Text(''),
             ),
-            ListTile(
-              title: const Text('Tutorial', textScaler: TextScaler.linear(1)),
-              onTap: () {
+            const Divider(height: 0.1,),
+            ListTile(title: const Text('Tutorial', textScaler: TextScaler.linear(1)),onTap: () {
                 Navigator.pop(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Tutorial',)));
               },
             ),
-            ListTile(
-              title: const Text('Movimientos'),
-              onTap: () {
-                Navigator.pop(context);
+            const Divider(height: 0.1,),
+            ListTile(title: const Text('Movimientos'), onTap: () {Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Movimientos',)));
               },
             ),
-            ListTile(
-              title: const Text('Combos'),
-              onTap: () {
-                Navigator.pop(context);
+            const Divider(height: 0.1,),
+            ListTile(title: const Text('Combos'), onTap: () {Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ComboPage()));
               },
             ),
-            ListTile(
-              title: const Text('Especificaciones'),
-              onTap: () {
-                Navigator.pop(context);
+            const Divider(height: 0.1,),
+            ListTile(title: const Text('Especificaciones'), onTap: () {Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Especificaciones',)));
               },
             ),

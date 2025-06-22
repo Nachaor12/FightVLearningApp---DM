@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fightvlearning_app/entity/character.dart';
 
 class Videogame {
+  int id; //id de juego para ser encontrado más rapido
   String name; //Nombre del juego/identificador
   ImageProvider image; //Imagen/logo del juego
   List<ImageProvider> listButtonsPages;
@@ -18,6 +19,7 @@ class Videogame {
   List<Character> listCharacters; //Lista de personajes que contempla el juego
 
   Videogame({
+    required this.id,
     required this.name, 
     required this.image,
     required this.listButtonsPages,

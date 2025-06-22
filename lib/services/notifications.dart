@@ -11,15 +11,15 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 
 Future<void> initNotifications() async {
-  final androidPlugin = flutterLocalNotificationsPlugin
-    .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+  //final androidPlugin = flutterLocalNotificationsPlugin
+  //  .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
 
-  final granted = await androidPlugin?.requestExactAlarmsPermission();
-  if (granted != true) {
+  //final granted = await androidPlugin?.requestExactAlarmsPermission();
+  /*if (granted != true) {
     print('❌ Permiso de notificaciones NO concedido');
   } else {
     print('✅ Permiso de notificaciones concedido');
-  }
+  }*/
 
   tz.initializeTimeZones();
   final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
@@ -80,7 +80,7 @@ Future<void> scheduleNotification({
   required String payLoad,
 }) async {
 
-  final now = tz.TZDateTime.now(tz.local);
+  //final now = tz.TZDateTime.now(tz.local);
 
   /*var scheduleDate = tz.TZDateTime(
     tz.local,
@@ -108,7 +108,7 @@ Future<void> scheduleNotification({
     matchDateTimeComponents: DateTimeComponents.time,
   );
 
-  print("Hora actual del emulador (zonalocal): $now");
+  //print("Hora actual del emulador (zonalocal): $now");
   //await flutterLocalNotificationsPlugin.show(id, title, body, notificationDetails)
 }
 

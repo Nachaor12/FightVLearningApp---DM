@@ -1,53 +1,19 @@
+import 'package:fightvlearning_app/screen/about_page.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 //import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fightvlearning_app/entity/videogame.dart';
 import 'package:fightvlearning_app/screen/likes_page.dart';
 import 'package:fightvlearning_app/screen/profile_page.dart';
 import 'package:fightvlearning_app/screen/game_page.dart';
 import 'package:fightvlearning_app/screen/preferences.dart';
-import 'package:fightvlearning_app/entity/user.dart';
+import 'package:fightvlearning_app/provider/appdata.dart';
 
 var logger = Logger();
 
 //Variables para preferencias y otras más de uso común entre pantallas
-class AppData extends ChangeNotifier {
-  //Indice con el cual cambiar el tabBar desde otras pantallas
-  int tabIndex = 0;
-  //Datos del usuario
-  ImageProvider userEmptyImage = AssetImage("assets/icons/icon_userempty.png");
-  List<User> users = [];
 
-  ImageProvider changeImageUser(ImageProvider imageUser) {
-    if(users.isEmpty){
-      return userEmptyImage;
-    }
-    return imageUser;
-  }
-  //Preferencias
-  bool activeNotifer = false;
-  bool shareCombos = false;
-  bool recomendCombos= false;
-
-  //Cargar preferencias
-  Future<void> loadPreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    activeNotifer = prefs.getBool('isActiveNotiferEnabled') ?? false;
-    shareCombos = prefs.getBool('isShareCombosEnabled') ?? false;
-    recomendCombos = prefs.getBool('isRecomendCombosEnabled') ?? false;
-    notifyListeners();
-  }
-
-  //Guardar preferencias
-  Future<void> savedPreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isActiveNotiferEnabled', activeNotifer);
-    await prefs.setBool('isShareCombosEnabled', shareCombos);
-    await prefs.setBool('isRecomendCombosEnabled', recomendCombos);
-  }
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -55,21 +21,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AppData(),
-      child: MaterialApp(
-        title: 'FightV-learning',
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 183, 58, 100)),
-          //textTheme: GoogleFonts.bebasNeueTextTheme(),
-          //textTheme: GoogleFonts.permanentMarkerTextTheme(),
-          //textTheme: GoogleFonts.bangersTextTheme(),
-          //textTheme: GoogleFonts.francoisOneTextTheme(),
-          //textTheme: GoogleFonts.vinaSansTextTheme(),
-        ),
-        home: MyHomePage(title: "Inicio")
-      )
+    return MaterialApp(
+      title: 'FightV-learning',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 183, 58, 100)),
+        //textTheme: GoogleFonts.bebasNeueTextTheme(),
+        //textTheme: GoogleFonts.permanentMarkerTextTheme(),
+        //textTheme: GoogleFonts.bangersTextTheme(),
+        //textTheme: GoogleFonts.francoisOneTextTheme(),
+        //textTheme: GoogleFonts.vinaSansTextTheme(),
+      ),
+      home: MyHomePage(title: 'Inicio',),
     );
   }
 }
@@ -84,12 +47,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  bool isActiveNotiferEnabled = false;
-  bool isShareCombosEnabled = false;
-  bool isRecomendCombosEnabled = false;
-
   final List<Videogame> listGamesHome = <Videogame>[
     Videogame(
+      id: 1,
       name: 'Street Fighter III: third strike', 
       image: AssetImage("assets/icons/sf3-3rd-strike-logo.png"),
       listButtonsPages: [
@@ -135,8 +95,48 @@ class _MyHomePageState extends State<MyHomePage> {
     }); 
   }
 
+  String showUserDraw(BuildContext context, int index){
+    if(context.watch<AppData>().users.isNotEmpty){
+      switch (index){
+        case 1:
+        return context.watch<AppData>().users[context.watch<AppData>().users.length - 1].name;
+        case 2:
+        return context.watch<AppData>().users[context.watch<AppData>().users.length - 1].email;
+      }
+    }else{
+      if(context.watch<AppData>().usersIsEmpty){
+        switch (index){
+          case 1:
+          return 'Empty User';
+          case 2:
+          return 'Empty_User@gmail.com';
+        }
+      }
+      else{
+        switch (index){
+          case 1:
+          return context.watch<AppData>().newNameUser;
+          case 2:
+          return context.watch<AppData>().newEmailUser;
+        }
+      }
+      
+    }
+    return 'There Not User';
+  }
   
   ImageProvider userEmptyImage = AssetImage("assets/icons/icon_userempty.png");
+  
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    //final appData = Provider.of<AppData>(context, listen: false);
+    //print("✔️ Usuario después del frame: ${appData.newNameUser}");
+    //print('Lista vacia: ${appData.users.isEmpty}');
+    });
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,50 +181,51 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),//gameListPage(),
           ),
         ),
-        drawer: Drawer(
-          child: Builder(
-            builder: (context) => ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                UserAccountsDrawerHeader(
-                  accountName: Text("Ignacio Alfaro"), 
-                  accountEmail: Text("nachoar.12.73.19@gmail.com"),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: context.read<AppData>().changeImageUser(userEmptyImage)
+        drawer: Consumer<AppData>(
+          builder: (context, appData, _) => Drawer(
+            child: Builder(
+              builder: (context) => ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  UserAccountsDrawerHeader(
+                    accountName: Text(showUserDraw(context, 1)), 
+                    accountEmail: Text(showUserDraw(context, 2)),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage: context.watch<AppData>().changeImageUser(userEmptyImage)
+                    ),
+                    
                   ),
-                  
-                ),
-                const Divider(height: 0.1,),
-                ListTile(title: const Text('Inicio'), leading: Icon(Icons.home), onTap: () { Navigator.pop(context); 
-                    DefaultTabController.of(context).animateTo(0);
-                  },
-                ),
-                const Divider(height: 0.1,),
-                ListTile(title: const Text('Mis juegos'), leading: Icon(Icons.sports_esports), onTap: () { Navigator.pop(context); 
-                    DefaultTabController.of(context).animateTo(1);
-                  },
-                ),
-                const Divider(height: 0.1,),
-                ListTile(title: const Text('Perfil'), leading: Icon(Icons.person), onTap: () { Navigator.pop(context);
-                    DefaultTabController.of(context).animateTo(2);
-                  },
-                ),
-                const Divider(height: 0.1,),
-                ListTile(title: const Text('Preferencias'), leading: Icon(Icons.settings), onTap: () { Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesPage()));//.then((_){context.watch()<AppData>().loadPreferences();});
-                  },
-                ),
-                const Divider(height: 0.1,),
-                ListTile(title: const Text('Acerca de'), leading: Icon(Icons.info), onTap: () { Navigator.pop(context);
-                    //Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
-                  },
-                ),
-                const Divider(height: 0.1,),
-              ],
+                  const Divider(height: 0.1,),
+                  ListTile(title: const Text('Inicio'), leading: Icon(Icons.home), onTap: () { Navigator.pop(context); 
+                      DefaultTabController.of(context).animateTo(0);
+                    },
+                  ),
+                  const Divider(height: 0.1,),
+                  ListTile(title: const Text('Mis juegos'), leading: Icon(Icons.sports_esports), onTap: () { Navigator.pop(context); 
+                      DefaultTabController.of(context).animateTo(1);
+                    },
+                  ),
+                  const Divider(height: 0.1,),
+                  ListTile(title: const Text('Perfil'), leading: Icon(Icons.person), onTap: () { Navigator.pop(context);
+                      DefaultTabController.of(context).animateTo(2);
+                    },
+                  ),
+                  const Divider(height: 0.1,),
+                  ListTile(title: const Text('Preferencias'), leading: Icon(Icons.settings), onTap: () { Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesPage()));
+                    },
+                  ),
+                  const Divider(height: 0.1,),
+                  ListTile(title: const Text('Acerca de'), leading: Icon(Icons.info), onTap: () { Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => AboutPage()));
+                    },
+                  ),
+                  const Divider(height: 0.1,),
+                ],
+              ),
             ),
           ),
         ),
-
       ),
     );
   }

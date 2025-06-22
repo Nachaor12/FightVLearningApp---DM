@@ -14,7 +14,7 @@ void goToInfoPage(BuildContext context, Videogame game){
 void goToTutorialPage(BuildContext context, Videogame game){
   Navigator.push(context, MaterialPageRoute(builder: (context) => TutorialPage(game: game,)));
 }
-void goToCharacterPage(BuildContext context, Videogame game){
+void goToCharacterListPage(BuildContext context, Videogame game){
   Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterlistPage(game: game,)));
 }
 void goToMyCombosPage(BuildContext context, Videogame game){
@@ -82,7 +82,7 @@ List<Widget> listButtonsFunction(BuildContext context, Videogame game, int index
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),padding: EdgeInsets.all(16),),
-      onPressed: () => goToCharacterPage(context, game),
+      onPressed: () => goToCharacterListPage(context, game),
       child: textTitle(index),
     ),
     ElevatedButton( style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(0, 185, 185, 185),

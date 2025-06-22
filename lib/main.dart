@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fightvlearning_app/services/notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:fightvlearning_app/screen/home_page.dart';
+import 'package:fightvlearning_app/provider/appdata.dart';
 
 
 void main() async{

@@ -1,9 +1,10 @@
+import 'package:fightvlearning_app/screen/about_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fightvlearning_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:fightvlearning_app/provider/appdata.dart';
 
-//https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png
 
 class PreferencesPage extends StatefulWidget{
   const PreferencesPage({super.key});
@@ -124,17 +125,12 @@ class _PreferencesPageState extends State<PreferencesPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const UserAccountsDrawerHeader(
-              accountName: Text("Ignacio Alfaro"), 
-              accountEmail: Text("nachoar.12.73.19@gmail.com"),
+            UserAccountsDrawerHeader(
+              accountName: Text(context.read<AppData>().newNameUser), 
+              accountEmail: Text(context.read<AppData>().newEmailUser),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  //'https://yt3.googleusercontent.com/P1HN1TEmdSyQa_sxDt1Az-o2oUVz-N3ivnykzw2Ah-alUHKXt5FeUs75Y4B1aKz4wRBD848XpA=s900-c-k-c0x00ffffff-no-rj'
-                  //'https://cdn.marvel.com/content/1x/036dpl_com_mas_dsk_03.jpg'
-                  'https://pbs.twimg.com/media/GIQhQh3XwAARA1R.jpg:large'
-                ),
+                backgroundImage: context.read<AppData>().userEmptyImage,
               ),
-              
             ),
             const Divider(height: 0.1,),
             ListTile(title: const Text('Inicio'), leading: Icon(Icons.home), onTap: () { Navigator.pop(context); 
@@ -160,7 +156,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
             ),
             const Divider(height: 0.1,),
             ListTile(title: const Text('Acerca de'), leading: Icon(Icons.info), onTap: () { Navigator.pop(context);
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AboutPage()));
               },
             ),
             const Divider(height: 0.1,),
