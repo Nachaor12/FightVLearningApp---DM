@@ -50,6 +50,7 @@ dependencies:
   path_provider: ^2.1.5
   url_launcher: ^6.3.1
   share_plus: ^11.0.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon_app/Icon-FightVLearning2.png"
 
 # The following section is specific to Flutter packages.
 flutter:
