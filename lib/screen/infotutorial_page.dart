@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fightvlearning_app/entity/videogame.dart';
 
 
-
 Widget textStyleTitle(String text){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,

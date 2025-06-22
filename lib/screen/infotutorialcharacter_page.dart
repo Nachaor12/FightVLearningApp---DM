@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fightvlearning_app/entity/character.dart';
 import 'package:fightvlearning_app/entity/videogame.dart';
 import 'package:fightvlearning_app/screen/character_page.dart';
-import 'package:fightvlearning_app/screen/combo_page.dart';
+//import 'package:fightvlearning_app/screen/combo_page.dart';
 
 
 
@@ -63,7 +63,7 @@ class InfoTutorialCharacterPage extends StatelessWidget {
             Navigator.pop(context, MaterialPageRoute(builder: (context) => CharacterPage(game: game, character:  character)));
           }
         ),
-        actions: [
+        /*actions: [
           Builder(
             builder: (context) {
               return IconButton(
@@ -74,7 +74,7 @@ class InfoTutorialCharacterPage extends StatelessWidget {
               );
             },
           ),
-        ],
+        ],*/
       ),
       body: Center(
         child: Column(
@@ -96,7 +96,7 @@ class InfoTutorialCharacterPage extends StatelessWidget {
           ],
         ),
       ),
-      endDrawer: Drawer(
+      /*endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -133,7 +133,7 @@ class InfoTutorialCharacterPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ),*/
     );
   }
 }

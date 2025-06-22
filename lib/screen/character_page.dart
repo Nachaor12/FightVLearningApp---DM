@@ -5,7 +5,20 @@ import 'package:fightvlearning_app/screen/infotutorialcharacter_page.dart';
 import 'package:fightvlearning_app/screen/characterlist_page.dart';
 import 'package:fightvlearning_app/screen/combo_page.dart';
 
+final isMakingCombo = false;
 
+class MadeComboPage extends StatelessWidget{
+  const MadeComboPage({super.key});
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+
+    );
+  }
+}
+
+//Para el estilo con borde del texto
 Widget textStyleTitle(String textTitle, String textDescription){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +49,6 @@ Widget textStyleTitle(String textTitle, String textDescription){
   );
 }
 
-
 class CharacterPage extends StatelessWidget {
   final Videogame game;
   final Character character;
@@ -45,7 +57,6 @@ class CharacterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -98,8 +109,8 @@ class CharacterPage extends StatelessWidget {
               child: Text(''),
             ),
             const Divider(height: 0.1,),
-            ListTile(title: const Text('Tutorial', textScaler: TextScaler.linear(1)),onTap: () {
-                Navigator.pop(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Tutorial',)));
+            ListTile(title: const Text('Tutorial', textScaler: TextScaler.linear(1)),onTap: () {Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Tutorial',)));
               },
             ),
             const Divider(height: 0.1,),
@@ -117,9 +128,14 @@ class CharacterPage extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => InfoTutorialCharacterPage(game: game ,character: character, nameCharacter: character.name, textTitle: 'Especificaciones',)));
               },
             ),
+            const Divider(height: 0.1,),
           ],
         ),
       ),
+      persistentFooterAlignment: AlignmentDirectional.topCenter,
+      persistentFooterButtons: [
+        ElevatedButton(onPressed: (){}, child: Text('Añadir combo'))
+      ],
     );
   }
 }

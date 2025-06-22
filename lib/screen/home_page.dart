@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 //import 'package:google_fonts/google_fonts.dart';
-import 'package:fightvlearning_app/entity/videogame.dart';
 import 'package:fightvlearning_app/screen/likes_page.dart';
 import 'package:fightvlearning_app/screen/profile_page.dart';
 import 'package:fightvlearning_app/screen/game_page.dart';
@@ -46,54 +45,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  final List<Videogame> listGamesHome = <Videogame>[
-    Videogame(
-      id: 1,
-      name: 'Street Fighter III: third strike', 
-      image: AssetImage("assets/icons/sf3-3rd-strike-logo.png"),
-      listButtonsPages: [
-        AssetImage("assets/icons/sf3-3rdstrike-art-by-kinu-unfinished.jpg"),  //Informacion general
-        AssetImage("assets/icons/Parry_the_ball_bonus_game_sf3.png"),         //Tutorial general
-        AssetImage("assets/icons/sf3-3rd-strike-characters-daigo-ikeno.jpg"), //Personajes
-        AssetImage("assets/icons/SFIII_3S-Ken_Ending-1.webp"),                //Mis combos
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        AssetImage("assets/icons/yang-3s-up.jpg"),                            //Movimiento
-        AssetImage("assets/icons/Gamest_Mook_Vol_194.webp"),                  //Ataque
-        AssetImage("assets/icons/SFIII_3S-Oro_Ending-3.webp"),                //Defensa
-        AssetImage("assets/icons/HUD_image_round.png"),                      //Hud/Interfaz
-        AssetImage("assets/icons/SFIII-Chun-Li-1.webp"),                      //Mecanicas
-      ],
-      released: 1999, 
-      developer: 'CAPCOM', 
-      favorite: false, 
-      icon: Icon(Icons.favorite_border, size: 30, color: Colors.redAccent),
-      description: 'El tercer videojuego enumerado de la saga original "Street Fighter"',
-      listTutorial: [
-        'Movimiento: ',
-        'Mecanicas: ',
-        'HUD/Interfaz: ',
-        'Ataque: ',
-        'Defensa: ',
-        ],
-      listCharacters: []
-    ),
-  ];
   
   Icon favoriteIcon = Icon(Icons.favorite_border);
-
-  void changeFavorite(Videogame game){
-    setState(() {
-      game.favorite = !game.favorite;
-      if(game.favorite != true){
-        game.icon = Icon(Icons.favorite_border, size: 30, color: Colors.redAccent);
-      }
-      else{
-        game.icon = Icon(Icons.favorite_sharp, size: 30, color: Colors.redAccent);
-      }
-      logger.d(game.favorite);
-    }); 
-  }
 
   String showUserDraw(BuildContext context, int index){
     if(context.watch<AppData>().users.isNotEmpty){
@@ -233,9 +186,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Center gameListPage() {
     return Center(
       child: ListView.builder(
-        itemCount: listGamesHome.length,
+        itemCount: context.watch<AppData>().listGamesHome.length,
         itemBuilder: (context, index){
-          final game = listGamesHome[index];
+          final game = context.watch<AppData>().listGamesHome[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
@@ -299,7 +252,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                               TextButton(
-                                onPressed: () => changeFavorite(game), 
+                                onPressed: () {setState(() {
+                                  context.read<AppData>().changeFavorite(game); 
+                                });},
                                 child: game.icon
                               )
                             ],

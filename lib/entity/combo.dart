@@ -1,11 +1,9 @@
-import 'package:fightvlearning_app/entity/movement.dart';
-
 
 class Combo {
-  int id;
-  String name;
-  bool safe;
-  List<Movement> listMovements;
+  int id; //ID del combo
+  String name; //Nombre del combo
+  bool safe; //Si es seguro el combo en caso de no golpear 
+  List<int> listMovements; //Lista de movimientos
 
   Combo({required this.id, required this.name, required this.safe, required this.listMovements});
 
@@ -24,7 +22,6 @@ class Combo {
       name: map['name'], 
       safe: map['safe'],
       listMovements: map['listMovements'],
-      );
+    );
   }
-
 }

@@ -1,4 +1,6 @@
 import 'package:fightvlearning_app/entity/user.dart';
+import 'package:fightvlearning_app/screen/about_page.dart';
+import 'package:fightvlearning_app/screen/preferences.dart';
 import 'package:fightvlearning_app/services/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:fightvlearning_app/services/database_helper.dart';
@@ -89,7 +91,7 @@ class MyProfilePageState extends State<MyProfilePage> {
   void editUser() async{
     
   }
-  //Para seleccionar al usuario (editar o eliminar)
+  //Para seleccionar al usuario
   void selectUser() async{
 
   }
@@ -123,11 +125,17 @@ class MyProfilePageState extends State<MyProfilePage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [ //Opciones
-                      ListTile(title: Text('Mis Juegos', style: TextStyle(fontSize: 20),), leading: Icon(Icons.sports_esports_outlined, size: 30,), onTap: (){},),
+                      ListTile(title: Text('Mis Juegos', style: TextStyle(fontSize: 20),), leading: Icon(Icons.sports_esports_outlined, size: 30,), onTap: (){
+                        DefaultTabController.of(context).animateTo(1);
+                      },),
                       ListTile(title: Text('Soporte', style: TextStyle(fontSize: 20),), leading: Icon(Icons.support_agent_outlined, size: 30,), onTap: (){},),
-                      ListTile(title: Text('Acerca de', style: TextStyle(fontSize: 20),), leading: Icon(Icons.info_outlined, size: 30,), onTap: (){},),
-                      ListTile(title: Text('Preferencias', style: TextStyle(fontSize: 20),), leading: Icon(Icons.settings_outlined, size: 30,), onTap: (){},),
-                      ListTile(title: Text('Cerrar sesión', style: TextStyle(fontSize: 20),), leading: Icon(Icons.exit_to_app_outlined, size: 30,), onTap: (){},),
+                      ListTile(title: Text('Acerca de', style: TextStyle(fontSize: 20),), leading: Icon(Icons.info_outlined, size: 30,), onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => AboutPage()));
+                      },),
+                      ListTile(title: Text('Preferencias', style: TextStyle(fontSize: 20),), leading: Icon(Icons.settings_outlined, size: 30,), onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesPage()));
+                      },),
+                      ListTile(title: Text('Cerrar sesión', style: TextStyle(fontSize: 20),), leading: Icon(Icons.exit_to_app_outlined, size: 30,), onTap: quitUser,),
                     ],
                   ),
                 ),
@@ -137,7 +145,7 @@ class MyProfilePageState extends State<MyProfilePage> {
         ),
         persistentFooterAlignment: AlignmentDirectional.topCenter,
         persistentFooterButtons: [
-          TextButton(onPressed: quitUser, child: Icon(Icons.remove, size: 30,)),
+          TextButton(onPressed: selectUser, child: Icon(Icons.remove, size: 30,)),
           TextButton(onPressed: () {setState(() {
             addNewUser = !addNewUser;
           });}, child: Icon(Icons.add_circle_rounded, size: 50,)),

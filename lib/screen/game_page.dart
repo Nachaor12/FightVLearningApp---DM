@@ -107,6 +107,17 @@ class GamePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(game.name),
       ),
+      /*appBar: AppBar(
+        title: Text(game.name),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () { Scaffold.of(context).openDrawer(); },
+            );
+          },
+        ),
+      ),*/
       body: Center(
         child: DefaultTabController(
           length: 3,
