@@ -84,7 +84,7 @@ class _FeedbackSectionState extends State<FeedbackSection> {
     await SharePlus.instance.share(
       ShareParams(
         files: [XFile(filePath)],
-        text: 'Destinatario: nachoar.12.73.19@gmail.com\n\nHola, adjunto el archivo de retroalimentación generado por la app.',
+        text: 'Destinatario: nachoar.12.73.19@gmail.com\n\nHola, adjunto el archivo de retroalimentación generado por la app.\n\nAquí añada algún comentario o sugerencia para la app: ',
         subject: 'Feedback usuario FVLA',
       )
     );
