@@ -61,7 +61,8 @@ Además de la base de datos y la persistencia de estos, se aplico la funcionalid
 
 ## Diagramas de Acceso a la información y flujo 
 
-
+[Diagrama de acceso a la información] https://github.com/Nachaor12/FightVLearningApp---DM/blob/main/Diagrama_de_acceso_informacion.png
+[Diagrama de flujo] 
 
 ---
 
