@@ -1,4 +1,5 @@
 # FightV Learning App
+PDS2
 
 ## Descripción del Proyecto
 
@@ -67,7 +68,7 @@ Además de la base de datos y la persistencia de estos, se aplico la funcionalid
 ---
 
 ## 🌐 Recursos y enlaces públicos
-- [Enlace a video en YouTube] 
+- [Enlace a video en YouTube] https://youtu.be/jJaimt2TU-M
 - [Enlace a APK de la aplicación] https://github.com/Nachaor12/FightVLearningApp---DM/releases/tag/v1.2.0
 - https://docs.flutter.dev/cookbook/design/tabs 
 - https://docs.flutter.dev/ui/navigation 
