@@ -59,7 +59,7 @@ El botón que contiene cada videojuego ahora es funcional y en la lista de video
 
 Además de la base de datos y la persistencia de estos, se aplico la funcionalidad de recibir notificaciones al momento de realizar una acción en la app, pero el llamado al permiso no esta bien configurado, por lo que para realizar una notificación, la app debe de tener el permiso desde el dispositivo de uso.
 
-## Validación de usuarios
+## Diagramas de Acceso a la información y flujo 
 
 
 
