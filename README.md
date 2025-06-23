@@ -67,6 +67,7 @@ Además de la base de datos y la persistencia de estos, se aplico la funcionalid
 
 ## 🌐 Recursos y enlaces públicos
 - [Enlace a video en YouTube] 
+- [Enlace a APK de la aplicación] https://github.com/Nachaor12/FightVLearningApp---DM/releases/tag/v1.2.0
 - https://docs.flutter.dev/cookbook/design/tabs 
 - https://docs.flutter.dev/ui/navigation 
 - https://docs.flutter.dev/cookbook/design/drawer
@@ -93,5 +94,6 @@ Además de la base de datos y la persistencia de estos, se aplico la funcionalid
 - https://www.youtube.com/watch?v=G1DHU3Htfdg
 - https://www.youtube.com/watch?v=IauVykCvj3g
 - https://pub.dev/packages/path_provider
+- https://pub.dev/packages/share_plus
 - https://pub.dev/packages/flutter_launcher_icons
 
